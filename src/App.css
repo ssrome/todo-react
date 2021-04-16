@@ -5,3 +5,17 @@ h1 {
 ul {
   list-style-type: none;
 }
+
+.btn {
+  border: 2px solid #000000;
+  color: #000000;
+  font-weight: 500;
+}
+
+div.list-group {
+  margin: 20px 0 0;
+}
+
+span.listButtons {
+  float: right;
+}
