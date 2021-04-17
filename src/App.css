@@ -2,10 +2,6 @@ h1 {
   text-align: center;
 }
 
-ul {
-  list-style-type: none;
-}
-
 .btn {
   border: 2px solid #000000;
   color: #000000;
@@ -16,6 +12,20 @@ div.list-group {
   margin: 20px 0 0;
 }
 
-span.listButtons {
+.list-group-item {
+  max-width: auto;
+}
+
+.incompletedItem {
+  text-decoration: none;
+}
+
+.completedItem {
+  text-decoration: line-through;
+}
+
+div.listButtons.col {
   float: right;
+  padding: 0;
+  width: auto;
 }
