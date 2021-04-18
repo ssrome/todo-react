@@ -70,6 +70,7 @@ export default function ToDo() {
       return "Undo Complete";
     }
   }
+
   return (
     <div>
       <Row>
@@ -117,7 +118,6 @@ export default function ToDo() {
                       >
                         {showCompleteButton(item.complete)}
                       </Button>{" "}
-                      <Button variant="light">Edit</Button>{" "}
                       <Button
                         variant="danger"
                         onClick={() => deleteItem(index)}
