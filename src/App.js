@@ -12,6 +12,16 @@ export default function App() {
           <h1>TO DO LIST</h1>
         </header>
         <ToDo />
+        <footer>
+          <a
+            href="https://github.com/ssrome/todo-react"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open source code
+          </a>{" "}
+          by Sabrina Samuel
+        </footer>
       </Container>
     </div>
   );

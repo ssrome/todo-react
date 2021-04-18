@@ -1,3 +1,11 @@
+body {
+  background: linear-gradient(
+    85deg,
+    rgb(208 210 210) 11.2%,
+    rgb(181 186 187) 88.9%
+  );
+}
+
 h1 {
   text-align: center;
   padding: 25px 0;
@@ -37,4 +45,8 @@ div.listButtons.col {
   float: right;
   padding: 0;
   width: auto;
+}
+footer {
+  text-align: center;
+  margin: 25px 0 0;
 }

@@ -32,7 +32,6 @@ export default function ToDo() {
     } else {
       console.log(items);
     }
-    console.log(items);
     setAddedItem("");
   }
 
@@ -40,7 +39,6 @@ export default function ToDo() {
     const newItems = [...items];
     newItems.splice(index, 1);
     setItems(newItems);
-    console.log(items);
   }
 
   function completeItem(index) {
@@ -48,11 +46,9 @@ export default function ToDo() {
     if (newItems[index].complete === false) {
       newItems[index].complete = true;
       setItems(newItems);
-      console.log(items);
     } else if (newItems[index].complete === true) {
       newItems[index].complete = false;
       setItems(newItems);
-      console.log(items);
     }
   }
 
