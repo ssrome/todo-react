@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 export default function ToDo() {
-  const [addedItem, setAddedItem] = useState(null);
+  const [addedItem, setAddedItem] = useState("");
   const [items, setItems] = useState([
     {
       itemName: "Pay bill",
@@ -40,6 +40,7 @@ export default function ToDo() {
       console.log(items);
     }
     console.log(items);
+    setAddedItem("");
   }
 
   function deleteItem(index) {
@@ -81,6 +82,7 @@ export default function ToDo() {
                   aria-label="add item input"
                   placeholder="Add item"
                   autoComplete="off"
+                  value={addedItem}
                   onChange={updateAddedItem}
                 />
               </Col>
