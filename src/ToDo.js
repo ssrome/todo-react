@@ -10,13 +10,10 @@ export default function ToDo() {
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem("list")) || []
   );
+  const [editedItem, setEditedItem] = useState("");
 
   function updateAddedItem(event) {
-    if (event.target.value.length > 0) {
-      setAddedItem(event.target.value);
-    } else {
-      return "";
-    }
+    setAddedItem(event.target.value);
   }
 
   function addItems(event) {
@@ -27,6 +24,7 @@ export default function ToDo() {
         {
           itemName: addedItem,
           complete: false,
+          edit: false,
         },
       ]);
     } else {
@@ -54,9 +52,62 @@ export default function ToDo() {
 
   function showCompleteButton(complete) {
     if (complete === false) {
-      return "Mark Complete";
+      return "Done";
     } else if (complete === true) {
-      return "Undo Complete";
+      return "Undo";
+    }
+  }
+
+  function editItem(index) {
+    const newItems = [...items];
+    if (newItems[index].edit === false) {
+      newItems[index].edit = true;
+      setItems(newItems);
+    } else if (newItems[index].edit === true) {
+      newItems[index].edit = false;
+      setItems(newItems);
+    }
+  }
+
+  function updateEditItem(event) {
+    if (event.target.value.length > 0) {
+      setEditedItem(event.target.value);
+    } else {
+      return "";
+    }
+  }
+
+  function saveEditedText(index) {
+    const newItems = [...items];
+    newItems[index].itemName = editedItem;
+    newItems[index].edit = false;
+    setItems(newItems);
+  }
+
+  function showEditBox(index) {
+    if (items[index].edit === true) {
+      return (
+        <div>
+          <Form.Control
+            className="editInput"
+            type="text"
+            aria-label="edit item input"
+            defaultValue={items[index].itemName}
+            onChange={updateEditItem}
+          />{" "}
+          <Button variant="info" onClick={() => saveEditedText(index)}>
+            Save
+          </Button>
+        </div>
+      );
+    } else {
+      return (
+        <ToDoItem
+          item={items[index].itemName}
+          complete={items[index].complete}
+          index={index}
+        />
+      );
     }
   }
 
@@ -97,19 +148,16 @@ export default function ToDo() {
               return (
                 <ListGroup.Item key={index}>
                   <Row>
-                    <Col>
-                      <ToDoItem
-                        item={item.itemName}
-                        complete={item.complete}
-                        index={index}
-                      />
-                    </Col>
+                    <Col>{showEditBox(index)}</Col>
                     <Col xs lg={4} className="listButtons">
                       <Button
                         variant="success"
                         onClick={() => completeItem(index)}
                       >
                         {showCompleteButton(item.complete)}
+                      </Button>{" "}
+                      <Button variant="light" onClick={() => editItem(index)}>
+                        Edit
                       </Button>{" "}
                       <Button
                         variant="danger"
