@@ -1,5 +1,6 @@
 h1 {
   text-align: center;
+  padding: 25px 0;
 }
 
 .btn {
@@ -16,11 +17,19 @@ div.list-group {
   max-width: auto;
 }
 
+.incompletedItem,
+.completedItem {
+  border: 2px solid #000000;
+  padding: 6px 12px;
+  vertical-align: middle;
+}
+
 .incompletedItem {
   text-decoration: none;
 }
 
 .completedItem {
+  background-color: rgb(197, 193, 193);
   text-decoration: line-through;
 }
 
