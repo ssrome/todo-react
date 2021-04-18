@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ToDoItem from "./ToDoItem";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,22 +7,15 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 export default function ToDo() {
   const [addedItem, setAddedItem] = useState("");
-  const [items, setItems] = useState([
-    {
-      itemName: "Pay bill",
-      complete: false,
-    },
-    {
-      itemName: "Clean car",
-      complete: false,
-    },
-  ]);
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem("list")) || []
+  );
 
   function updateAddedItem(event) {
     if (event.target.value.length > 0) {
       setAddedItem(event.target.value);
     } else {
-      return null;
+      return "";
     }
   }
 
@@ -70,6 +63,10 @@ export default function ToDo() {
       return "Undo Complete";
     }
   }
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(items));
+  }, [items]);
 
   return (
     <div>
